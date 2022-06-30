@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from flask import render_template, Blueprint, request
 
 from main.functions import get_by_word
@@ -17,6 +19,8 @@ def search_page():
         post = get_by_word(search_name)
     except FileNotFoundError:
         return 'Файл не найден'
+    except JSONDecodeError:
+        return 'Невалидный файл'
     return render_template('post_list.html',
                            search_name=search_name,
                            posts=post)

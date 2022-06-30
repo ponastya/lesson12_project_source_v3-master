@@ -1,9 +1,10 @@
 import json
 
 
-def load_all_posts() -> list[dict]:
+def load_all_posts() :
     with open('posts.json', 'r', encoding='utf-8') as f:
         return json.load(f)
+
 
 
 def get_by_word(word: str) -> list[dict]:
