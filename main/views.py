@@ -1,7 +1,6 @@
 from json import JSONDecodeError
 import logging
 from flask import render_template, Blueprint, request
-
 from main.functions import get_by_word
 
 main_blueprint = Blueprint('main_blueprint', __name__, template_folder='templates')
