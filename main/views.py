@@ -13,8 +13,10 @@ def main_page():
 @main_blueprint.route('/search/')
 def search_page():
     search_name = request.args.get('s', '')
-    post = get_by_word(search_name)
-
+    try:
+        post = get_by_word(search_name)
+    except FileNotFoundError:
+        return 'Файл не найден'
     return render_template('post_list.html',
                            search_name=search_name,
                            posts=post)

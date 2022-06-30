@@ -15,18 +15,9 @@ app.register_blueprint(main_blueprint, url_prefix='/')
 app.register_blueprint(new_post_blueprint)
 
 
-'''
-@app.route("/list")
-def page_tag():
-    pass
-
-
-
-
-
 @app.route("/uploads/<path:path>")
 def static_dir(path):
     return send_from_directory("uploads", path)
-'''
+
 
 app.run(host='0.0.0.0', port=80)
