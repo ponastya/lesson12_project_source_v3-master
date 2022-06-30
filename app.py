@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, send_from_directory
 # from functions import get_by_word
-
+import logging
 # Импортируем блюпринты из их пакетов
 from main.views import main_blueprint
 from loader.views import new_post_blueprint
@@ -14,6 +14,8 @@ app = Flask(__name__)
 app.register_blueprint(main_blueprint, url_prefix='/')
 app.register_blueprint(new_post_blueprint)
 
+# Добавили файл, в который пишем логи
+logging.basicConfig(filename="basic.log", level=logging.INFO)
 
 @app.route("/uploads/<path:path>")
 def static_dir(path):

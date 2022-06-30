@@ -1,3 +1,4 @@
+import logging
 from json import JSONDecodeError
 
 from flask import render_template, Blueprint, request
@@ -20,10 +21,12 @@ def page_post_upload():
     if not img or not text:
         return "Ошибка загрузки. Нет картинки или текста"
     if img.filename.split(".")[-1] not in ALLOWED_EXTENSIONS:
+        logging.info('This is not a jpg or png')
         return 'Неправильное расширение.'
     try:
         picture_path: str = '/' + save_picture(img)
     except FileNotFoundError:
+        logging.error('Файл не найден')
         return 'Файл не найден'
     except JSONDecodeError:
         return 'Невалидный файл'
